@@ -1,0 +1,6 @@
+Test (2A): initial election ...
+  ... Passed
+Test (2A): election after network failure ...
+  ... Passed
+PASS
+ok  	raft	8.515s
