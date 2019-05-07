@@ -41,7 +41,9 @@ type ApplyMsg struct {
 }
 
 type LogEntry struct {
-	term int
+	Term    int
+	Index   int
+	Command interface{}
 }
 
 //
@@ -95,6 +97,8 @@ func (rf *Raft) GetState() (int, bool) {
 	var term int
 	var isleader bool
 	// Your code here (2A).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
 
 	term = rf.currentTerm
 	isleader = rf.state == LEADER
@@ -168,6 +172,9 @@ type RequestAppendEntryReply struct {
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
 
+	go func() { rf.requestVote <- struct{}{} }()
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
 	reply.Term = rf.currentTerm
 	if args.Term < rf.currentTerm {
 		reply.VoteGranted = false
@@ -175,7 +182,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		if rf.votedFor < 0 {
 			reply.VoteGranted = true
 			rf.votedFor = args.CandidateId
-			go func() { rf.requestVote <- struct{}{} }()
 		} else {
 			reply.VoteGranted = false
 		}
@@ -184,11 +190,15 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.changeTerm(args.Term)
 		rf.convertState(FOLLOWER)
 		rf.votedFor = args.CandidateId
-		go func() { rf.requestVote <- struct{}{} }()
 	}
 }
 
 func (rf *Raft) RequestAppendEntry(args *RequestAppendEntryArgs, reply *RequestAppendEntryReply) {
+
+	go func() { rf.appendEntry <- struct{}{} }()
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
 	reply.Term = rf.currentTerm
 	if args.Term < rf.currentTerm {
 		reply.Success = false
@@ -198,7 +208,6 @@ func (rf *Raft) RequestAppendEntry(args *RequestAppendEntryArgs, reply *RequestA
 		if args.LeaderId != rf.me {
 			rf.convertState(FOLLOWER)
 		}
-		go func() { rf.appendEntry <- struct{}{} }()
 	}
 }
 
@@ -260,8 +269,16 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader := true
 
 	// Your code here (2B).
+	term, isLeader = rf.GetState()
+	index = len(rf.log)
+	if isLeader {
+		go rf.commitLog(command)
+	}
 
 	return index, term, isLeader
+}
+
+func (rf *Raft) commitLog(command interface{}) {
 }
 
 //
@@ -297,7 +314,7 @@ func (rf *Raft) changeTerm(term int) {
 
 func (rf *Raft) process() {
 	for {
-		switch rf.state {
+		switch rf.getStateAtomic() {
 		case FOLLOWER:
 			select {
 			case <-rf.electTimer.C:
@@ -315,12 +332,16 @@ func (rf *Raft) process() {
 			case <-rf.electTimer.C:
 				rf.participateElection()
 			case <-rf.appendEntry:
+				rf.mu.Lock()
 				rf.convertState(FOLLOWER)
+				rf.mu.Unlock()
 				rf.resetTimer()
 			default:
+				rf.mu.Lock()
 				if rf.totalVoted*2 > len(rf.peers) {
 					rf.convertState(LEADER)
 				}
+				rf.mu.Unlock()
 			}
 		case LEADER:
 			rf.broadcastEntires()
@@ -339,6 +360,12 @@ func (rf *Raft) participateElection() {
 	rf.broadcastVote()
 }
 
+func (rf *Raft) getStateAtomic() int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.state
+}
+
 func (rf *Raft) broadcastVote() {
 	request := RequestVoteArgs{rf.currentTerm, rf.me}
 
@@ -346,7 +373,9 @@ func (rf *Raft) broadcastVote() {
 	for i := 0; i < len(rf.peers); i++ {
 		go func(peerId int) {
 			var reply RequestVoteReply
-			if rf.state == CANDIDATE && rf.sendRequestVote(peerId, &request, &reply) {
+			if rf.getStateAtomic() == CANDIDATE && rf.sendRequestVote(peerId, &request, &reply) {
+				rf.mu.Lock()
+				defer rf.mu.Unlock()
 				if reply.VoteGranted {
 					rf.totalVoted++
 				}
@@ -361,6 +390,8 @@ func (rf *Raft) broadcastVote() {
 }
 
 func (rf *Raft) broadcastEntires() {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
 	request := RequestAppendEntryArgs{rf.currentTerm, rf.me}
 
 	for i := 0; i < len(rf.peers); i++ {
@@ -370,10 +401,12 @@ func (rf *Raft) broadcastEntires() {
 		go func(peerId int) {
 			var reply RequestAppendEntryReply
 			if rf.sendAppendEntries(peerId, &request, &reply) {
+				rf.mu.Lock()
 				if reply.Term > rf.currentTerm {
 					rf.convertState(FOLLOWER)
 					rf.changeTerm(reply.Term)
 				}
+				rf.mu.Unlock()
 			}
 		}(i)
 	}
