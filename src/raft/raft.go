@@ -142,8 +142,10 @@ func (rf *Raft) readPersist(data []byte) {
 //
 type RequestVoteArgs struct {
 	// Your data here (2A, 2B).
-	Term        int //candidate's term
-	CandidateId int
+	Term         int //candidate's term
+	CandidateId  int
+	LastLogIndex int
+	LastLogTerm  int
 }
 
 //
@@ -157,8 +159,12 @@ type RequestVoteReply struct {
 }
 
 type RequestAppendEntryArgs struct {
-	Term     int
-	LeaderId int
+	Term         int
+	LeaderId     int
+	PrevLogIndex int
+	PrevLogTerm  int
+	Entries      []LogEntry
+	LeaderCommit int
 }
 
 type RequestAppendEntryReply struct {
@@ -272,13 +278,14 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	term, isLeader = rf.GetState()
 	index = len(rf.log)
 	if isLeader {
-		go rf.commitLog(command)
+		go rf.appendEntries(command)
 	}
 
 	return index, term, isLeader
 }
 
-func (rf *Raft) commitLog(command interface{}) {
+func (rf *Raft) appendEntries(command interface{}) {
+
 }
 
 //
@@ -367,7 +374,8 @@ func (rf *Raft) getStateAtomic() int {
 }
 
 func (rf *Raft) broadcastVote() {
-	request := RequestVoteArgs{rf.currentTerm, rf.me}
+	lastLogEntry := rf.log[len(rf.log)-1]
+	request := RequestVoteArgs{rf.currentTerm, rf.me, lastLogEntry.Index, lastLogEntry.Term}
 
 	rf.totalVoted = 1
 	for i := 0; i < len(rf.peers); i++ {
@@ -389,10 +397,12 @@ func (rf *Raft) broadcastVote() {
 	}
 }
 
-func (rf *Raft) broadcastEntires() {
+func (rf *Raft) broadcastEntires(command) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	request := RequestAppendEntryArgs{rf.currentTerm, rf.me}
+	lastLogEntry :=  rf.log[len(rf.log) - 1]
+	logEntry := LogEntry{lastLogEntry.Index + 1, rf.currentTerm, }
+	request := RequestAppendEntryArgs{rf.currentTerm, rf.me, lastLogEntry.Index, lastLogEntry.Term, }
 
 	for i := 0; i < len(rf.peers); i++ {
 		if i == rf.me {
@@ -441,6 +451,8 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.electTimer = time.NewTimer(getElectTimeout())
 	rf.appendEntry = make(chan struct{})
 	rf.requestVote = make(chan struct{})
+	rf.log = make([]LogEntry, 1)
+	rf.log = append(rf.log, *new(LogEntry))
 
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
