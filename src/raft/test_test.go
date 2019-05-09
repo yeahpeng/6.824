@@ -308,13 +308,18 @@ func TestRejoin2B(t *testing.T) {
 	leader2 := cfg.checkOneLeader()
 	cfg.disconnect(leader2)
 
+	fmt.Println("disconnect leader2")
 	// old leader connected again
 	cfg.connect(leader1)
 
 	cfg.one(104, 2)
 
+
+
+	fmt.Println("will leader2")
 	// all together now
 	cfg.connect(leader2)
+	fmt.Println("connect leader2")
 
 	cfg.one(105, servers)
 
