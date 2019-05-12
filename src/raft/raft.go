@@ -22,7 +22,6 @@ import (
 	"encoding/gob"
 	"labrpc"
 	"math/rand"
-	"strconv"
 	"sync"
 	"time"
 )
@@ -75,6 +74,7 @@ type Raft struct {
 
 	state int //0, 1 or 2(follower, candidate or leader)
 
+	//Persistent state
 	CurrentTerm int
 	VotedFor    int
 	Log         []LogEntry
@@ -234,7 +234,7 @@ func (rf *Raft) RequestAppendEntry(args *RequestAppendEntryArgs, reply *RequestA
 
 		for i := len(rf.Log) - 1; i >= 0; i-- {
 			if rf.Log[i].Index == args.PrevLogIndex && rf.Log[i].Term == args.PrevLogTerm {
-				rf.Log = append(rf.Log[:i+1], args.Entries...)
+				rf.appendLogEntries(i, args.Entries)
 				reply.Success = true
 				if args.LeaderCommit < len(rf.Log) - 1 {
 					rf.commitIndex = args.LeaderCommit
@@ -349,10 +349,16 @@ func (rf *Raft) print(msg string) {
 	//	"Log:", rf.Log, "commitId", rf.commitIndex, "nextIndex", rf.nextIndex)
 }
 
+func (rf *Raft) appendLogEntries(index int, entries []LogEntry) {
+	rf.Log = append(rf.Log[: index + 1], entries...)
+	rf.persist()
+}
+
 func (rf *Raft) convertState(state int) {
 	rf.state = state
 	rf.VotedFor = -1
 	rf.totalVoted = 0
+	rf.persist()
 }
 
 func (rf *Raft) changeTerm(term int) {
@@ -473,12 +479,11 @@ func (rf *Raft) broadcastEntires() {
 		if i == rf.me {
 			continue
 		}
-		timeStamp :=  time.Now().UnixNano() / 1e6
-		go func(peerId int, timeStamp int64) {
+		go func(peerId int) {
 			var reply RequestAppendEntryReply
 			for {
-				rf.print(strconv.FormatInt(timeStamp,10) + " " + "boardEntries")
 				time.Sleep(SLEEP_INTERVAL * time.Millisecond)
+				rf.print( "boardEntries")
 				rf.mu.Lock()
 				if rf.state != LEADER {
 					rf.mu.Unlock()
@@ -517,7 +522,7 @@ func (rf *Raft) broadcastEntires() {
 					rf.mu.Unlock()
 				}
 			}
-		}(i, timeStamp)
+		}(i)
 	}
 
 	for {
@@ -567,10 +572,12 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.persister = persister
 	rf.me = me
 	rf.applyCh = applyCh
+	rf.totalVoted = 0
+	rf.state = FOLLOWER
+	rf.VotedFor = -1
 
 	// Your initialization code here (2A, 2B, 2C).
 
-	rf.convertState(FOLLOWER)
 
 	rf.electTimer = time.NewTimer(getElectTimeout())
 	rf.appendEntry = make(chan struct{})
@@ -581,6 +588,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
+	rf.print("MAKE")
 
 	go rf.process()
 	go rf.applyMsg()
@@ -590,6 +598,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 
 func (rf *Raft) applyMsg() {
 	for {
+
 		rf.mu.Lock()
 		for i := rf.lastApplied + 1; i <= rf.commitIndex; i++ {
 			var msg ApplyMsg
