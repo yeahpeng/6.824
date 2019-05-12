@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e92f6bf-c547-4e06-9a40-c4d48ec229f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/raft/out" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raft/raft.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/raft.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raft/test_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/test_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,21 +13,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="865">
-              <caret line="318" column="30" selection-start-line="318" selection-start-column="30" selection-end-line="318" selection-end-column="30" />
+            <state relative-caret-position="1937">
+              <caret line="277" lean-forward="true" selection-start-line="277" selection-end-line="277" />
+              <folding>
+                <element signature="e#220#317#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Go/src/fmt/print.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="330" column="15" selection-start-line="330" selection-start-column="6" selection-end-line="330" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-401">
-              <caret line="186" column="76" lean-forward="true" selection-start-line="186" selection-start-column="76" selection-end-line="186" selection-end-column="76" />
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="88">
+                <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -35,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/raft/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="388" column="19" selection-start-line="388" selection-start-column="19" selection-end-line="388" selection-end-column="19" />
+            <state relative-caret-position="156">
+              <caret line="162" column="51" lean-forward="true" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -45,28 +69,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>apply error</find>
-      <find>true 103</find>
-      <find>LEAD id: 1</find>
-      <find>leader</find>
-      <find>appendentry</find>
-      <find>lead id: 2</find>
-      <find>di</find>
-      <find>start</find>
-      <find>sendvote</find>
-      <find>sendVote</find>
-      <find>lead id</find>
-      <find>change Ter</find>
-      <find>true</find>
-      <find>&quot;sendAppend</find>
-      <find>dis</find>
+      <find>beco</find>
       <find>sendEntriesAfter</find>
+      <find>1557661329873</find>
+      <find>becomeL</find>
+      <find>becomeLeader</find>
+      <find>dis</find>
+      <find>Start</find>
+      <find>start(</find>
+      <find>bec</find>
+      <find>apply error:</find>
+      <find>AppendEntryTrue</find>
+      <find>id: 2</find>
+      <find>print</find>
+      <find>fmt.print</find>
+      <find>rf.mu.LOCK</find>
+      <find>for</find>
+      <find>id: 0 term: 21</find>
+      <find>for {</find>
+      <find>voteBefore</find>
+      <find>sendRequest</find>
+      <find>sendRequestVoteAfter</find>
+      <find>becom</find>
+      <find>process state: 0</find>
+      <find>sendRequestVoteBefore</find>
+      <find>sendRequestVote</find>
+      <find>become</find>
       <find>id: 1</find>
-      <find>process state: 2</find>
-      <find>sendVoteAfter</find>
-      <find>id: 0</find>
-      <find>voteTrue</find>
-      <find>sendEntriesAfter 1</find>
+      <find>process state: 1 id: 1</find>
+      <find>process state: 0 id: 1</find>
+      <find>fmt.Print</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -81,12 +113,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/raft/test_test.go" />
         <option value="$PROJECT_DIR$/src/raft/raft.go" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="291" />
-    <option name="y" value="40" />
+    <option name="x" value="805" />
+    <option name="y" value="51" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -95,6 +128,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -117,10 +151,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
@@ -145,15 +179,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Go Test.TestRejoin2B in raft">
-    <configuration name="go build raft.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="6.824_learning" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/src/raft/raft.go" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestCount2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBasicAgree2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="6.824_learning" />
       <working_directory value="$PROJECT_DIR$/src/raft" />
       <framework value="gotest" />
@@ -161,17 +187,29 @@
       <package value="raft" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestCount2B$" />
+      <pattern value="^TestBasicAgree2B$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestFailAgree2B in test_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestFailAgree2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="6.824_learning" />
       <working_directory value="$PROJECT_DIR$/src/raft" />
       <framework value="gotest" />
-      <kind value="FILE" />
+      <kind value="PACKAGE" />
+      <package value="raft" />
       <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/src/raft/test_test.go" />
+      <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestFailAgree2B$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFailNoAgree2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="6.824_learning" />
+      <working_directory value="$PROJECT_DIR$/src/raft" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="raft" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestFailNoAgree2B$" />
       <method v="2" />
     </configuration>
     <configuration name="TestRejoin2B in raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -185,65 +223,77 @@
       <pattern value="^TestRejoin2B$" />
       <method v="2" />
     </configuration>
+    <configuration name="go test raft" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="6.824_learning" />
+      <working_directory value="$PROJECT_DIR$/src/raft" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="raft" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.TestRejoin2B in raft" />
-        <item itemvalue="Go Build.go build raft.go" />
-        <item itemvalue="Go Test.TestCount2B in raft" />
-        <item itemvalue="Go Test.TestFailAgree2B in test_test.go" />
+        <item itemvalue="Go Test.go test raft" />
+        <item itemvalue="Go Test.TestFailAgree2B in raft" />
+        <item itemvalue="Go Test.TestFailNoAgree2B in raft" />
+        <item itemvalue="Go Test.TestBasicAgree2B in raft" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 28m 28s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 52m 04s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 29m 55s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 52m 17s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 30m 23s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 52m 27s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 35m 22s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 53m 26s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 41m 22s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 53m 35s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 42m 43s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 54m 15s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 45m 08s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 54m 24s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 48m 55s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 54m 32s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 52m 47s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 54m 52s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestRejoin2B_in_raft - 2019.05.10 at 00h 56m 03s.xml">
+    <history-entry file="TestRejoin2B_in_raft - 2019.05.12 at 21h 55m 08s.xml">
       <configuration name="TestRejoin2B in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18687983" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14167586" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.48440748" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3773389" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2058212" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32952183" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -259,8 +309,13 @@
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/src/raft/config.go</url>
           <line>119</line>
-          <properties />
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/raft/test_test.go</url>
+          <line>304</line>
+          <properties />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -275,22 +330,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/raft/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="388" column="19" selection-start-line="388" selection-start-column="19" selection-end-line="388" selection-end-column="19" />
+        <state relative-caret-position="156">
+          <caret line="162" column="51" lean-forward="true" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="318" column="30" selection-start-line="318" selection-start-column="30" selection-end-line="318" selection-end-column="30" />
+        <state relative-caret-position="1937">
+          <caret line="277" lean-forward="true" selection-start-line="277" selection-end-line="277" />
+          <folding>
+            <element signature="e#220#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/fmt/print.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-401">
-          <caret line="186" column="76" lean-forward="true" selection-start-line="186" selection-start-column="76" selection-end-line="186" selection-end-column="76" />
+        <state relative-caret-position="172">
+          <caret line="330" column="15" selection-start-line="330" selection-start-column="6" selection-end-line="330" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="88">
+            <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
