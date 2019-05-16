@@ -630,6 +630,7 @@ func TestPersist32C(t *testing.T) {
 
 	cfg.one(103, 2)
 
+	fmt.Println("start leader + 1", (leader + 1) % servers)
 	cfg.start1((leader + 1) % servers)
 	cfg.connect((leader + 1) % servers)
 

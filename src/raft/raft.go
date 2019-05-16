@@ -20,8 +20,10 @@ package raft
 import (
 	"bytes"
 	"encoding/gob"
+	"fmt"
 	"labrpc"
 	"math/rand"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -130,6 +132,9 @@ func (rf *Raft) persist() {
 	e.Encode(rf.CurrentTerm)
 	e.Encode(rf.VotedFor)
 	e.Encode(rf.Log)
+
+	rf.print("persist")
+
 
 	data := w.Bytes()
 	rf.persister.SaveRaftState(data)
@@ -321,6 +326,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 		rf.Log = append(rf.Log, LogEntry{rf.CurrentTerm, len(rf.Log), command})
 		rf.nextIndex[rf.me] = len(rf.Log)
 		rf.matchIndex[rf.me] = len(rf.Log) - 1
+		rf.persist()
 	}
 	rf.print("Start")
 
@@ -338,15 +344,14 @@ func (rf *Raft) Kill() {
 }
 
 func (rf *Raft) resetTimer() {
-	// rf.print("reset")
 	rf.electTimer.Reset(getElectTimeout())
 }
 
 func (rf *Raft) print(msg string) {
 
-	//timestamp := time.Now().UnixNano() / 1e6
-	//fmt.Println(timestamp, msg, "state:", rf.state, "id:", rf.me, "term:", rf.CurrentTerm,  "voteFor:", rf.VotedFor, "totalVoted:", rf.totalVoted,
-	//	"Log:", rf.Log, "commitId", rf.commitIndex, "nextIndex", rf.nextIndex)
+	timestamp := time.Now().UnixNano() / 1e6
+	fmt.Println(timestamp, msg, "id:", rf.me, "state:", rf.state,  "term:", rf.CurrentTerm,  "voteFor:", rf.VotedFor, "totalVoted:", rf.totalVoted,
+		"Log:", rf.Log, "commitId", rf.commitIndex, "nextIndex", rf.nextIndex, "matchIndex", rf.matchIndex)
 }
 
 func (rf *Raft) appendLogEntries(index int, entries []LogEntry) {
@@ -365,6 +370,7 @@ func (rf *Raft) changeTerm(term int) {
 	rf.CurrentTerm = term
 	rf.VotedFor = -1
 	rf.totalVoted = 0
+	rf.persist()
 }
 
 func (rf *Raft) process() {
@@ -475,15 +481,18 @@ func (rf *Raft) broadcastEntires() {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 
+	rf.print("startbroadcastEntires")
+
 	for i := 0; i < len(rf.peers); i++ {
 		if i == rf.me {
 			continue
 		}
-		go func(peerId int) {
+		timeStamp := time.Now().UnixNano() / 1e6
+		go func(peerId int, timeStamp int64) {
 			var reply RequestAppendEntryReply
 			for {
 				time.Sleep(SLEEP_INTERVAL * time.Millisecond)
-				rf.print( "boardEntries")
+				rf.print( "boardEntries " + strconv.FormatInt(timeStamp,10))
 				rf.mu.Lock()
 				if rf.state != LEADER {
 					rf.mu.Unlock()
@@ -522,7 +531,7 @@ func (rf *Raft) broadcastEntires() {
 					rf.mu.Unlock()
 				}
 			}
-		}(i)
+		}(i, timeStamp)
 	}
 
 	for {
@@ -607,6 +616,7 @@ func (rf *Raft) applyMsg() {
 			rf.applyCh <- msg
 			rf.lastApplied = i
 			rf.print("applyMsg")
+			fmt.Println(i, rf.Log[i].Command)
 		}
 		rf.mu.Unlock()
 		time.Sleep(SLEEP_INTERVAL * time.Millisecond)
