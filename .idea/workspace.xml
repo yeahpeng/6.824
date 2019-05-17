@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e92f6bf-c547-4e06-9a40-c4d48ec229f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raft/out" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raft/raft.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/raft.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raft/test_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/raft/test_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,16 +12,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="695">
-              <caret line="655" column="9" lean-forward="true" selection-start-line="655" selection-start-column="9" selection-end-line="655" selection-end-column="9" />
+            <state relative-caret-position="293">
+              <caret line="515" column="39" selection-start-line="515" selection-start-column="39" selection-end-line="515" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="828">
@@ -49,7 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>a</find>
       <find>boardEn</find>
       <find>1558022638571</find>
       <find>id: 2</find>
@@ -79,6 +75,7 @@
       <find>votedfor =</find>
       <find>convert</find>
       <find>print(</find>
+      <find>board</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/lib/go-1.6" />
@@ -92,8 +89,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/raft/raft.go" />
         <option value="$PROJECT_DIR$/src/raft/test_test.go" />
+        <option value="$PROJECT_DIR$/src/raft/raft.go" />
       </list>
     </option>
   </component>
@@ -231,9 +228,6 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestFigure8Unreliable2C_in_raft - 2019.05.17 at 16h 10m 37s.xml">
-      <configuration name="TestFigure8Unreliable2C in raft" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestFigure8Unreliable2C_in_raft - 2019.05.17 at 16h 22m 19s.xml">
       <configuration name="TestFigure8Unreliable2C in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -259,6 +253,9 @@
       <configuration name="TestUnreliableChurn2C in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
     <history-entry file="TestFigure82C_in_raft - 2019.05.17 at 16h 34m 45s.xml">
+      <configuration name="TestFigure82C in raft" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestFigure82C_in_raft - 2019.05.17 at 18h 18m 09s.xml">
       <configuration name="TestFigure82C in raft" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
@@ -360,13 +357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="655" column="9" lean-forward="true" selection-start-line="655" selection-start-column="9" selection-end-line="655" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/raft/test_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
@@ -374,6 +364,13 @@
           <folding>
             <element signature="e#220#317#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/raft/raft.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="515" column="39" selection-start-line="515" selection-start-column="39" selection-end-line="515" selection-end-column="39" />
         </state>
       </provider>
     </entry>

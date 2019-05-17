@@ -22,7 +22,6 @@ import (
 	"encoding/gob"
 	"labrpc"
 	"math/rand"
-	"strconv"
 	"sync"
 	"time"
 )
@@ -507,15 +506,14 @@ func (rf *Raft) broadcastEntires() {
 		if i == rf.me {
 			continue
 		}
-		timeStamp := time.Now().UnixNano() / 1e6
-		go func(peerId int, timeStamp int64) {
+		go func(peerId int) {
 			var reply RequestAppendEntryReply
 			for {
 				if rf.checkShutDown(){
 					return
 				}
 				time.Sleep(SLEEP_INTERVAL * time.Millisecond)
-				rf.print( "boardEntries " + strconv.FormatInt(timeStamp,10))
+				rf.print( "boardEntries")
 				rf.mu.Lock()
 				if rf.state != LEADER {
 					rf.mu.Unlock()
@@ -557,7 +555,7 @@ func (rf *Raft) broadcastEntires() {
 					rf.mu.Unlock()
 				}
 			}
-		}(i, timeStamp)
+		}(i)
 	}
 
 	for {
