@@ -613,24 +613,18 @@ func TestPersist32C(t *testing.T) {
 
 	cfg.one(102, 2)
 
-	fmt.Println("crash leader", leader)
 	cfg.crash1((leader + 0) % servers)
 
-	fmt.Println("crash leader+ 1",  (leader + 1) % servers)
 	cfg.crash1((leader + 1) % servers)
 
-	fmt.Println("connect leader + 2", (leader + 2) % servers)
 	cfg.connect((leader + 2) % servers)
 
-	fmt.Println("start leader", leader)
 	cfg.start1((leader + 0) % servers)
 
-	fmt.Println("connect leader", leader)
 	cfg.connect((leader + 0) % servers)
 
 	cfg.one(103, 2)
 
-	fmt.Println("start leader + 1", (leader + 1) % servers)
 	cfg.start1((leader + 1) % servers)
 	cfg.connect((leader + 1) % servers)
 
@@ -692,6 +686,7 @@ func TestFigure82C(t *testing.T) {
 			}
 		}
 	}
+	fmt.Println("len", 690)
 
 	for i := 0; i < servers; i++ {
 		if cfg.rafts[i] == nil {
